@@ -1,9 +1,10 @@
 <div class="container">
-  <input type="text" #keyword (keyup)="search(keyword.value)">
+    <app-searh-form (keyup)="search($event)"></app-searh-form>
   <table class="table">
+
     <thead class="thead-light">
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">ID</th>
       <th scope="col">Name</th>
       <th scope="col">Email</th>
       <th scope="col">Handle</th>
@@ -21,3 +22,5 @@
     </tbody>
   </table>
 </div>
+<a routerLink="/create">Create</a>
+<router-outlet></router-outlet>

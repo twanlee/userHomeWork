@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {IUser} from '../IUser';
 import {filter} from 'rxjs/operators';
+import {FormControl, FormGroup} from '@angular/forms';
+import {UserService} from '../user.service';
 
 @Component({
   selector: 'app-userlist',
@@ -9,22 +11,10 @@ import {filter} from 'rxjs/operators';
 })
 export class UserlistComponent implements OnInit {
   userFilter = [];
-  users: IUser[] = [
-    {
-      id: 1,
-      name: 'User1',
-      email: 'User1@gmail.com'
-    },
-    {
-      id: 2,
-      name: 'User2',
-      email: 'User2@gmail.com'
-    }, {
-      id: 3,
-      name: 'User3',
-      email: 'User1@gmail.com'
-    }
-  ];
+  users: IUser[] = [];
+
+  constructor(private userService: UserService) {
+  }
 
   search(event) {
     let keyword = event.target.value;
@@ -47,14 +37,11 @@ export class UserlistComponent implements OnInit {
     this.userFilter = deleteUser;
   }
 
-
-  constructor() {
-}
-
-ngOnInit()
-:
-void {
-  this.userFilter = this.users;
-}
+  ngOnInit()
+    :
+    void {
+    this.users = this.userService.getAll();
+    this.userFilter = this.users;
+  }
 
 }
