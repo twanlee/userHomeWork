@@ -1,7 +1,6 @@
-<button type="button" class="btn btn-dark" (click)="showCreateForm()">Add new user</button>
 <form [formGroup]="userForm" (ngSubmit)="create()">
-  <input formControlName="id" type="text">
-  <input formControlName="name" type="text">
-  <input formControlName="email" type="text">
-  <button>Submit</button>
+  <input  class="form-control" formControlName="id" type="text" placeholder="id">
+  <input class="form-control" formControlName="name" type="text" placeholder="name">
+  <input class="form-control" formControlName="email" type="text" placeholder="email">
+  <button class="btn btn-dark">Submit</button>
 </form>
