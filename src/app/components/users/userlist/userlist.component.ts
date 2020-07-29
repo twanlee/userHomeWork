@@ -1,8 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {IUser} from '../IUser';
+import {IUser} from '../../../IUser';
 import {filter} from 'rxjs/operators';
 import {FormControl, FormGroup} from '@angular/forms';
-import {UserService} from '../user.service';
+import {UserService} from '../../../user.service';
+import {IGroup} from '../../../IGroup';
+import {GroupService} from '../../group-management/group.service';
 
 @Component({
   selector: 'app-userlist',
@@ -12,8 +14,10 @@ import {UserService} from '../user.service';
 export class UserlistComponent implements OnInit {
   userFilter = [];
   users: IUser[] = [];
+  groups: IGroup[] = [];
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,
+              private groupService: GroupService) {
   }
 
   search(event) {
@@ -42,6 +46,8 @@ export class UserlistComponent implements OnInit {
     void {
     this.users = this.userService.getAll();
     this.userFilter = this.users;
+    this.groups = this.groupService.getAll();
+
   }
 
 }
