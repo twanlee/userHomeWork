@@ -13,7 +13,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let user of userFilter; let i = index">
+    <tr *ngFor="let user of userFilter | paginate: {id:'user-list',itemsPerPage:2,currentPage:page}; let i = index">
       <th scope="row">{{i + 1}}</th>
       <td>{{user.name}}</td>
       <td>{{user.email}}</td>
@@ -29,6 +29,7 @@
     </tr>
     </tbody>
   </table>
+  <pagination-controls (pageChange)="page = $event" id="user-list"></pagination-controls>
 </div>
 <a routerLink="/create">Create</a>
 <router-outlet></router-outlet>

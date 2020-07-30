@@ -15,6 +15,7 @@ export class UserlistComponent implements OnInit {
   userFilter = [];
   users: IUser[] = [];
   groups: IGroup[] = [];
+  page: number = 1;
 
   constructor(private userService: UserService,
               private groupService: GroupService) {

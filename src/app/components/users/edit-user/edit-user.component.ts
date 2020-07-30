@@ -38,7 +38,7 @@ export class EditUserComponent implements OnInit {
     };
     console.log(user);
     this.userService.update(user);
-
+    this.router.navigate(['/']);
   }
 
   ngOnInit(): void {
