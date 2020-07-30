@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {IUser} from '../../../IUser';
 import {GroupService} from '../../group-management/group.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
@@ -12,7 +12,7 @@ import {IGroup} from '../../../IGroup';
   styleUrls: ['./edit-user.component.css']
 })
 export class EditUserComponent implements OnInit {
-  titlePage = 'Edit user info'
+  titlePage = 'Edit user info';
   editUserForm: FormGroup;
   editUserId:string;
   editUser: IUser;
@@ -30,12 +30,20 @@ export class EditUserComponent implements OnInit {
 
   }
   updateUser(){
+    const user: IUser = {
+      id: this.editUserForm.value.id,
+      name: this.editUserForm.value.name,
+      email: this.editUserForm.value.email,
+      group_id: +this.editUserForm.value.group_id
+    };
+    console.log(user);
+    this.userService.update(user);
 
   }
 
   ngOnInit(): void {
     this.editUserForm = new FormGroup({
-      id:new FormControl(this.editUserId),
+      id:new FormControl(this.editUser.id),
       name:new FormControl(this.editUser.name),
       email:new FormControl(this.editUser.email),
       group_id:new FormControl(this.editUser.group_id),
